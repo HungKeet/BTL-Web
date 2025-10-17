@@ -1,0 +1,368 @@
+:root {
+    --primary-color: #e03c3c;
+    --secondary-color: #0a0a0a;
+    --text-color: #333;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.header {
+    background-color: var(--primary-color);
+    /* Sử dụng biến */
+    color: white;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    font-weight: 500;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+}
+
+.header-nav {
+    display: flex;
+    gap: 10px;
+}
+
+.search-bar {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 0 15px;
+}
+
+.search-bar i {
+    color: #777;
+    font-size: 14px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 12px 10px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-button i {
+    font-size: 18px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    border-radius: 8px;
+    padding: 10px 0;
+    margin-top: 5px;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+#user-section {
+    display: flex;
+    align-items: center;
+}
+
+#user-section .nav-button {
+    background-color: var(--primary-color);
+    /* Sử dụng biến */
+}
+
+a {
+    text-decoration: none;
+}
+
+.news-section {
+    margin-top: 30px;
+}
+
+.news-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.swiper {
+    width: 100%;
+    height: 320px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    background-color: rgba(255, 255, 255, 0.85);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #333 !important;
+    transition: background-color 0.2s;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 18px !important;
+    font-weight: bold;
+}
+
+.swiper-pagination-bullet-active {
+    background: white !important;
+}
+
+.products-section {
+    margin-top: 30px;
+}
+
+.products-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.product-card h3 {
+    font-size: 16px;
+    margin: 10px 0;
+    height: 50px;
+    line-height: 1.4;
+    overflow: hidden;
+}
+
+.product-card .price {
+    color: var(--primary-color);
+    /* Sử dụng biến */
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.product-card .actions button,
+.product-card .actions a {
+    display: inline-block;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.btn-add-cart {
+    background-color: var(--primary-color);
+    /* Sử dụng biến */
+    color: white;
+}
+
+.btn-view-detail {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    margin-top: 40px;
+}
+
+.user-info-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.3;
+}
+
+.user-info-text span {
+    font-size: 14px;
+}
+
+.user-info-text a {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+}
+
+.site-footer {
+    background: #343a40;
+    color: #f8f9fa;
+    padding: 40px 0 20px 0;
+    margin-top: 40px;
+    font-size: 0.95em;
+    line-height: 1.8;
+    border-top: 1px solid #495057;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-column h2 {
+    color: whitesmoke;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-info li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info i {
+    color: var(--primary-color);
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.social-links a {
+    color: #949393;
+    font-size: 1.8em;
+    text-decoration: none;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    color: #aaa;
+    font-size: 0.9em;
+}

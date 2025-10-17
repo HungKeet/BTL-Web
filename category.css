@@ -1,0 +1,35 @@
+#category-title {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 32px;
+}
+
+.filter-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-group label {
+    font-weight: 500;
+}
+
+.filter-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-width: 150px;
+}
+.footer{
+    margin-bottom: 0%;
+}

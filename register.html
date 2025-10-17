@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đăng ký tài khoản</title>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Đăng Ký</h2>
+      <form id="register-form">
+        <div class="input-group">
+          <label for="username">Tên đăng nhập</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div class="input-group">
+          <label for="password">Mật khẩu</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit">Đăng ký</button>
+        <p>Đã có tài khoản? <a href="login.html">Đăng nhập ngay</a></p>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("register-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+
+          const users = JSON.parse(localStorage.getItem("users")) || [];
+
+          const userExists = users.some((user) => user.username === username);
+          if (userExists) {
+            alert("Tên đăng nhập đã tồn tại. Vui lòng chọn tên khác.");
+            return;
+          }
+
+          users.push({ username: username, password: password });
+          localStorage.setItem("users", JSON.stringify(users));
+
+          alert("Đăng ký thành công! Bạn có thể đăng nhập ngay bây giờ.");
+          window.location.href = "login.html";
+        });
+    </script>
+  </body>
+</html>

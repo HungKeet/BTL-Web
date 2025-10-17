@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Đăng nhập</title>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Đăng Nhập</h2>
+      <form id="login-form">
+        <div class="input-group">
+          <label for="username">Tên đăng nhập</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div class="input-group">
+          <label for="password">Mật khẩu</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit">Đăng nhập</button>
+        <p>Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const usernameInput = document.getElementById("username").value;
+          const passwordInput = document.getElementById("password").value;
+
+          const users = JSON.parse(localStorage.getItem("users")) || [];
+
+          const foundUser = users.find(
+            (user) =>
+              user.username === usernameInput && user.password === passwordInput
+          );
+
+          if (foundUser) {
+            localStorage.setItem(
+              "currentUser",
+              JSON.stringify({ name: foundUser.username })
+            );
+            alert("Đăng nhập thành công!");
+            window.location.href = "index.html";
+          } else {
+            alert("Tên đăng nhập hoặc mật khẩu không chính xác.");
+          }
+        });
+    </script>
+  </body>
+</html>
