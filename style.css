@@ -244,7 +244,6 @@ a {
 
 .product-card .price {
     color: var(--primary-color);
-    /* Sử dụng biến */
     font-size: 18px;
     font-weight: 700;
 }
@@ -263,7 +262,6 @@ a {
 
 .btn-add-cart {
     background-color: var(--primary-color);
-    /* Sử dụng biến */
     color: white;
 }
 
@@ -271,7 +269,19 @@ a {
     background-color: #f0f0f0;
     color: #333;
 }
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: repeat(1, 1fr); 
+    }
 
+    .nav-button span {
+        display: none; 
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+}
 .footer {
     text-align: center;
     padding: 20px;
