@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thanh Toán Đơn Hàng</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="checkout.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container header-content">
+            <a href="index.html" class="logo">K Store</a>
+            <a href="cart.html" class="continue-shopping">
+                ← Quay lại Giỏ hàng
+            </a>
+        </div>
+    </header>
+
+    <main class="main-container main-padding min-height-80vh">
+        <h1 class="page-title">Thông tin Thanh Toán</h1>
+        <div class="checkout-layout">
+            <!-- Form thông tin người nhận -->
+            <div class="checkout-form card-style">
+                <h2 class="section-title">Thông tin người nhận</h2>
+                <form id="info-form">
+                    <label>Họ và tên:
+                        <input type="text" name="name" required>
+                    </label>
+                    <label>Số điện thoại:
+                        <input type="tel" name="phone" required>
+                    </label>
+                    <label>Địa chỉ nhận hàng:
+                        <textarea name="address" rows="3" required></textarea>
+                    </label>
+                </form>
+            </div>
+
+            <!-- Tóm tắt và nút thanh toán -->
+            <div class="checkout-summary card-style">
+                <h2 class="section-title">Tóm tắt đơn hàng</h2>
+                <div class="summary-details">
+                    <div class="flex-space-between">
+                        <span>Tạm tính:</span>
+                        <span id="subtotal-display">0₫</span>
+                    </div>
+                    <div class="flex-space-between">
+                        <span>Phí vận chuyển:</span>
+                        <span class="text-green">Miễn phí</span>
+                    </div>
+                    <div class="flex-space-between total-row">
+                        <span>Tổng cộng:</span>
+                        <span id="total-display">0₫</span>
+                    </div>
+                </div>
+
+                <button id="pay-btn" class="btn-primary btn-full-width mt-6">Thanh toán đặt cọc</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal mã QR -->
+    <div id="qr-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal" class="close-button">&times;</span>
+            <h2>Quét mã QR để đặt cọc</h2>
+            <img src="images/maqr.jpg" alt="Mã QR" class="qr-image">
+            <p>Vui lòng quét bằng ứng dụng ngân hàng hoặc ví điện tử để xác nhận đặt cọc.</p>
+        </div>
+    </div>
+
+    <script src="checkout.js"></script>
+</body>
+</html>

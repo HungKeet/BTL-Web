@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng Của Bạn</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <!-- Liên kết với file CSS tùy chỉnh -->
+    <link rel="stylesheet" href="cart_styles.css">
+</head>
+<body>
+
+    <!-- Header đơn giản -->
+    <header class="main-header">
+        <div class="header-container header-content">
+            <a href="index.html" class="logo">K Store</a>
+            <a href="index.html" class="continue-shopping">
+                <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                <span>Tiếp tục mua hàng</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="main-container main-padding min-height-80vh">
+        <h1 class="page-title">Giỏ Hàng Của Bạn</h1>
+        
+        <div class="cart-layout">
+            
+            <!-- Cột trái: Danh sách Sản phẩm -->
+            <div class="cart-main-content card-style">
+                <div class="cart-header hide-on-mobile font-semibold text-gray-600 border-b pb-3 mb-4">
+                    <span class="col-product">Sản phẩm</span>
+                    <span class="col-price text-center">Đơn giá</span>
+                    <span class="col-quantity text-center">Số lượng</span>
+                    <span class="col-total text-right">Thành tiền</span>
+                </div>
+                <div id="cart-list">
+                    <!-- Sản phẩm sẽ được render tại đây -->
+                </div>
+                <div id="empty-cart-message" class="empty-message hidden">
+                    <svg class="icon-large mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    <p class="text-xl text-gray-600 font-medium">Giỏ hàng của bạn đang trống.</p>
+                    <a href="index.html" class="mt-4 inline-block text-red-600 hover:text-red-700 font-semibold">Quay lại trang chủ</a>
+                </div>
+            </div>
+
+            <!-- Cột phải: Tóm tắt Đơn hàng và Nút Thanh toán -->
+            <div class="cart-summary">
+                <div class="card-style summary-box">
+                    <h2 class="summary-title">Tóm Tắt</h2>
+                    
+                    <div class="summary-details">
+                        <div class="flex-space-between">
+                            <span>Tạm tính:</span>
+                            <span id="subtotal-display" class="font-medium">0₫</span>
+                        </div>
+                        <div class="flex-space-between">
+                            <span>Phí vận chuyển:</span>
+                            <span class="font-medium text-green-600">Miễn phí</span>
+                        </div>
+                        <div class="flex-space-between total-row">
+                            <span>TỔNG CỘNG:</span>
+                            <span id="total-display">0₫</span>
+                        </div>
+                    </div>
+
+                    <!-- Nút Thanh toán -->
+                    <a href="checkout.html" id="checkout-link" class="btn-primary btn-full-width mt-6 text-center disabled-link">
+                        Tiến hành Thanh toán
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3 class="footer-title">Về K Store</h3>
+                <p class="footer-text">Chuyên cung cấp các dòng điện thoại thông minh chính hãng với giá tốt nhất thị trường, cùng dịch vụ chăm sóc khách hàng tận tâm.</p>
+            </div>
+            <div class="footer-col">
+                <h3 class="footer-title">Thông tin liên hệ</h3>
+                <p class="footer-text">📍 123 Mỹ Đình, Nam Từ Liêm, Hà Nội</p>
+                <p class="footer-text">📞 (024) 3333 9999</p>
+                <p class="footer-text">📧 support@mobilestore.vn</p>
+            </div>
+            <div class="footer-col">
+                <h3 class="footer-title">Theo dõi chúng tôi</h3>
+                <div class="social-links">
+                    <a href="#" class="social-icon">
+                        <svg class="icon-small" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12c0 5.14 3.733 9.424 8.636 10.188v-7.25h-2.26v-2.938h2.26V9.3c0-2.227 1.359-3.442 3.344-3.442 0.942 0 1.936 0.168 1.936 0.168v2.132h-1.07c-1.042 0-1.37 0.647-1.37 1.31v1.57H17.41l-0.34 2.938h-2.062v7.25C18.267 21.424 22 17.14 22 12c0-5.523-4.477-10-10-10z"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 6.002c-.81.358-1.685.59-2.602.702.934-.56 1.644-1.455 1.98-2.51-.876.516-1.84 0.89-2.854 1.096-.826-.882-2.002-1.432-3.303-1.432-2.512 0-4.555 2.043-4.555 4.555 0 .357.04.706.118 1.037-3.784-.19-7.135-2-9.378-4.757-.393.676-.618 1.464-.618 2.308 0 1.579.802 2.973 2.02 3.793-.746-.023-1.446-.226-2.05-.567v.058c0 2.205 1.57 4.045 3.65 4.464-.383.104-.787.16-1.2.16-.295 0-.58-.028-.857-.08.58 1.815 2.26 3.136 4.25 3.173-1.56 1.222-3.535 1.95-5.69 1.95-.37 0-.737-.022-1.097-.064 2.022 1.294 4.425 2.049 6.992 2.049 8.396 0 12.974-6.94 12.974-12.974 0-.197-.004-.393-.012-.588.89-0.64 1.66-1.436 2.277-2.345z"></path></svg>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10 5.52 0 10-4.48 10-10 0-5.52-4.48-10-10-10zm7.1 12.4c-.03 1.05-.12 2.08-.27 3.09-.08.57-.46 1.1-.97 1.28-1.52.54-3.05.81-4.58.81-1.53 0-3.06-.27-4.58-.81-.51-.18-.89-.71-.97-1.28-.15-1.01-.24-2.04-.27-3.09h11.1zm-1.86-2.45H6.76c-.05-.44-.08-.88-.08-1.35 0-3.32 2.68-6 6-6s6 2.68 6 6c0 .47-.03.91-.08 1.35z"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            &copy; 2025 K Store. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Liên kết với file JavaScript -->
+    <script src="cart_scripts.js"></script>
+</body>
+</html>
