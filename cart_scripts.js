@@ -19,55 +19,51 @@ document.addEventListener('DOMContentLoaded', () => {
          }
     }
 
-    function renderCart() {
-        cartListContainer.innerHTML = ''; // Xóa sạch nội dung cũ
-        let subtotal = 0;
+function renderCart() {
+    cartListContainer.innerHTML = '';
+    let subtotal = 0;
 
-        // Xử lý giỏ hàng trống
-        if (cart.length === 0) {
-            if (emptyCartMessage) emptyCartMessage.classList.remove('hidden');
-            if (checkoutLink) checkoutLink.classList.add('disabled-link');
-            if (subtotalDisplay) subtotalDisplay.textContent = '0₫';
-            if (totalDisplay) totalDisplay.textContent = '0₫';
-            updateHeaderCartCount(); // Cập nhật header thành 0
-            return;
-        }
-
-        // Ẩn thông báo trống và kích hoạt nút thanh toán nếu có hàng
-        if (emptyCartMessage) emptyCartMessage.classList.add('hidden');
-        if (checkoutLink) checkoutLink.classList.remove('disabled-link');
-
-        // Lặp qua từng sản phẩm để tạo HTML
-        cart.forEach((item, index) => {
-            const itemElement = document.createElement('div');
-            itemElement.classList.add('cart-item'); // <<< SỬ DỤNG CLASS MỚI
-            const itemTotalPrice = item.price * item.quantity;
-            subtotal += itemTotalPrice;
-            const imageUrl = item.image || 'https://placehold.co/80x80/E0E0E0/333333?text=DT'; // Ảnh mặc định
-
-            // Tạo HTML cho từng sản phẩm
-            itemElement.innerHTML = `
-                <img src="${imageUrl}" alt="${item.name}" onerror="this.onerror=null;this.src='https://placehold.co/80x80/E0E0E0/333333?text=DT';">
-                <span class="product-name">${item.name}</span>
-                <span class="item-price">${item.price.toLocaleString('vi-VN')}₫</span>
-                <div class="quantity-control">
-                    <button class="decrease-btn" data-index="${index}">-</button>
-                    <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-index="${index}" readonly>
-                    <button class="increase-btn" data-index="${index}">+</button>
-                </div>
-                <span class="item-total-price">${itemTotalPrice.toLocaleString('vi-VN')}₫</span>
-                <button class="remove-btn" data-index="${index}">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-            `;
-            cartListContainer.appendChild(itemElement);
-        });
-
-        // Cập nhật tóm tắt đơn hàng
-        if (subtotalDisplay) subtotalDisplay.textContent = `${subtotal.toLocaleString('vi-VN')}₫`;
-        if (totalDisplay) totalDisplay.textContent = `${subtotal.toLocaleString('vi-VN')}₫`; // Giả sử miễn phí vận chuyển
-        updateHeaderCartCount(); // Cập nhật số lượng trên header
+    if (cart.length === 0) {
+        if (emptyCartMessage) emptyCartMessage.classList.remove('hidden');
+        if (checkoutLink) checkoutLink.classList.add('disabled-link');
+        if (subtotalDisplay) subtotalDisplay.textContent = '0₫';
+        if (totalDisplay) totalDisplay.textContent = '0₫';
+        updateHeaderCartCount();
+        return;
     }
+
+    if (emptyCartMessage) emptyCartMessage.classList.add('hidden');
+    if (checkoutLink) checkoutLink.classList.remove('disabled-link');
+
+    cart.forEach((item, index) => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('cart-item');
+        const itemTotalPrice = item.price * item.quantity;
+        subtotal += itemTotalPrice;
+        const imageUrl = item.image || 'https://placehold.co/80x80/E0E0E0/333333?text=DT';
+
+        // Updated HTML structure for the new grid layout (no wrapper)
+        itemElement.innerHTML = `
+            <img src="${imageUrl}" alt="${item.name}" onerror="this.onerror=null;this.src='https://placehold.co/80x80/E0E0E0/333333?text=DT';">
+            <span class="product-name">${item.name}</span>
+            <span class="item-price">${item.price.toLocaleString('vi-VN')}₫</span>
+            <div class="quantity-control">
+                <button class="decrease-btn" data-index="${index}">-</button>
+                <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-index="${index}" readonly>
+                <button class="increase-btn" data-index="${index}">+</button>
+            </div>
+            <span class="item-total-price">${itemTotalPrice.toLocaleString('vi-VN')}₫</span>
+            <button class="remove-btn" data-index="${index}">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+        `;
+        cartListContainer.appendChild(itemElement);
+    });
+
+    if (subtotalDisplay) subtotalDisplay.textContent = `${subtotal.toLocaleString('vi-VN')}₫`;
+    if (totalDisplay) totalDisplay.textContent = `${subtotal.toLocaleString('vi-VN')}₫`;
+    updateHeaderCartCount();
+}
 
     // --- Xử lý sự kiện click trên danh sách giỏ hàng (SỬ DỤNG addEventListener) ---
     if(cartListContainer) { // Chỉ thêm listener nếu cartListContainer tồn tại
