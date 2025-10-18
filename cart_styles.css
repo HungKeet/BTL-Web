@@ -193,54 +193,105 @@
     .main-padding { padding-left: 2rem; padding-right: 2rem; }
 }
 
-@media (min-width: 1024px) {
-    .cart-layout { flex-direction: row; }
-    .cart-main-content { width: 70%; }
-    .cart-summary { width: 30%; }
-    .cart-header { display: grid; }
+/* Bên trong @media (min-width: 1024px) */
 
-    .cart-item {
-        grid-template-columns: 40% 20% 20% 20%;
-        grid-template-rows: auto;
+    .cart-layout { flex-direction: row; }
+    .cart-main-content { width: 70%; } /* Có thể điều chỉnh tỷ lệ nếu cần */
+    .cart-summary { width: 30%; }
+    .cart-header {
+        display: grid;
+        /* Cập nhật header grid cho khớp layout mới */
+        grid-template-columns: 1fr 120px 120px 120px auto; /* Sản phẩm | Đơn giá | Số lượng | Thành tiền | Xóa */
         gap: 1rem;
         align-items: center;
     }
+     /* Căn chỉnh header columns */
+    .cart-header .col-price { text-align: center; }
+    .cart-header .col-quantity { text-align: center; }
+    .cart-header .col-total { text-align: right; }
+    /* Thêm cột trống cho nút xóa header (hoặc bỏ trống) */
+    .cart-header::after { content: ""; }
+
+
+    .cart-item {
+        display: grid;
+        /* Định nghĩa 5 cột chính + 1 cột nhỏ cho nút xóa */
+        grid-template-columns: 1fr 120px 120px 120px auto; /* Sản phẩm (Ảnh+Tên) | Đơn giá | Số lượng | Thành tiền | Nút xóa */
+        gap: 1rem;
+        align-items: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid #e5e7eb;
+    }
+     .cart-item:last-child { border-bottom: none; }
+
+    /* Cột 1: Sản phẩm (Ảnh + Tên) */
+    .cart-item .product-info-wrapper { /* Tạo wrapper ảo để chứa ảnh và tên */
+        display: flex;
+        align-items: center;
+        grid-column: 1 / 2; /* Chiếm cột 1 */
+    }
     .cart-item img {
-        grid-row: 1;
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        margin-right: 1rem; /* Khoảng cách giữa ảnh và tên */
+        flex-shrink: 0;
     }
     .cart-item .product-name {
-        grid-column: 1;
-        grid-row: 1;
-        margin-left: calc(5rem + 1rem);
-        align-self: center;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--text-color, #333);
+        line-height: 1.4;
+        flex-grow: 1; /* Tên tự giãn ra */
+    }
+
+    /* Cột 2: Đơn giá */
     .cart-item .item-price {
-        grid-column: 2;
-        grid-row: 1;
+        grid-column: 2 / 3;
         text-align: center;
         align-self: center;
         display: block !important;
+        font-weight: 500;
+        color: var(--text-color);
+        font-size: 0.95rem;
     }
+
+    /* Cột 3: Số lượng */
     .quantity-control {
-        grid-column: 3;
-        grid-row: 1;
+        grid-column: 3 / 4;
         justify-content: center;
         margin: 0;
         align-self: center;
     }
+
+    /* Cột 4: Thành tiền */
     .item-total-price {
-        grid-column: 4;
-        grid-row: 1;
+        grid-column: 4 / 5;
         text-align: right;
         align-self: center;
+        font-weight: 600;
+        color: var(--text-color, #333);
+        font-size: 0.95rem;
     }
+
+    /* Cột 5: Nút xóa */
     .remove-btn {
         position: static;
-        grid-column: 4;
-        grid-row: 1;
-        justify-self: end;
-        margin-left: 0.5rem;
+        grid-column: 5 / 6;
+        justify-self: center;
+        margin-left: 0;
         align-self: center;
+        background: none;
+        border: none;
+        color: #9ca3af;
+        cursor: pointer;
+        padding: 0.25rem;
+        font-size: 1.1rem;
+        transition: color 0.15s;
     }
+    .remove-btn:hover { color: var(--primary-color); }
+    .remove-btn i { pointer-events: none; }
     /* Hide price below name on desktop */
     .cart-item .product-info .item-price { display: none !important;}
 }
