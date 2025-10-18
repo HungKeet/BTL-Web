@@ -207,15 +207,12 @@
     }
     .cart-item img {
         grid-row: 1;
-        width: 60px;
-        height: 60px;
     }
     .cart-item .product-name {
         grid-column: 1;
         grid-row: 1;
-        margin-left: 70px; /* Adjust based on new image size */
+        margin-left: calc(5rem + 1rem);
         align-self: center;
-    }
     .cart-item .item-price {
         grid-column: 2;
         grid-row: 1;
