@@ -1,120 +1,128 @@
-// --- 1. BIẾN VÀ HÀM TIỆN ÍCH ---
-
-// Hàm định dạng tiền tệ Việt Nam
-function formatCurrency(amount) {
-    // Đảm bảo amount là số
-    if (typeof amount !== 'number') return '0₫';
-    return amount.toLocaleString('vi-VN') + '₫';
-}
-
-// Lấy giỏ hàng từ localStorage (Khởi tạo)
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-// --- 2. HÀM CẬP NHẬT GIỎ HÀNG VÀ GIAO DIỆN ---
-
-// Lưu giỏ hàng vào localStorage và render lại
-function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-    renderCart();
-}
-
-// Thay đổi số lượng sản phẩm (Được gọi từ HTML)
-function changeQuantity(id, change) {
-    const itemId = String(id);
-    const itemIndex = cart.findIndex(i => String(i.id) === itemId);
-
-    if (itemIndex > -1) {
-        cart[itemIndex].quantity += change;
-        if (cart[itemIndex].quantity < 1) {
-            // Nếu số lượng nhỏ hơn 1, xóa sản phẩm
-            cart.splice(itemIndex, 1);
-        }
-        saveCart();
-    }
-}
-
-// Xóa sản phẩm khỏi giỏ hàng (Được gọi từ HTML)
-function removeItem(id) {
-    const itemId = String(id);
-    cart = cart.filter(i => String(i.id) !== itemId);
-    saveCart();
-}
-
-// Render (Hiển thị) giỏ hàng và tóm tắt
-function renderCart() {
-    // Luôn đọc lại dữ liệu từ localStorage để đảm bảo giỏ hàng luôn mới nhất
-    cart = JSON.parse(localStorage.getItem('cart')) || []; 
-    
-    const cartListElement = document.getElementById('cart-list');
+document.addEventListener('DOMContentLoaded', () => {
+    const cartListContainer = document.getElementById('cart-list');
     const subtotalDisplay = document.getElementById('subtotal-display');
     const totalDisplay = document.getElementById('total-display');
-    const emptyMessage = document.getElementById('empty-cart-message'); // Selector của thông báo "Giỏ hàng trống"
+    const emptyCartMessage = document.getElementById('empty-cart-message');
     const checkoutLink = document.getElementById('checkout-link');
-    
-    let subtotal = 0;
-    
-    // --- LOGIC ẨN/HIỆN THÔNG BÁO ---
-    if (cart.length === 0) {
-        cartListElement.innerHTML = '';
-        emptyMessage.classList.remove('hidden'); // HIỆN thông báo
-        checkoutLink.classList.add('disabled-link'); // Vô hiệu hóa nút
-        subtotalDisplay.textContent = formatCurrency(0);
-        totalDisplay.textContent = formatCurrency(0);
-        return;
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function saveCart() {
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateHeaderCartCount(); // Gọi hàm cập nhật header
     }
 
-    emptyMessage.classList.add('hidden'); // ẨN thông báo khi có hàng
-    checkoutLink.classList.remove('disabled-link'); // Kích hoạt nút
-    // ---------------------------------
-    
-    cartListElement.innerHTML = cart.map(item => {
-        const itemTotal = item.price * item.quantity;
-        subtotal += itemTotal;
-        
-        // Đảm bảo image có sẵn, nếu không thì dùng placeholder 
-        const imageUrl = item.image || 'https://placehold.co/80x80/E0E0E0/333333?text=DT';
+    // Hàm cập nhật số lượng trên header chính (cần ID 'cart-count' trên header)
+    function updateHeaderCartCount() {
+        const cartCountHeader = document.getElementById('cart-count');
+         if (cartCountHeader) {
+             cartCountHeader.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+         }
+    }
 
-        return `
-            <div class="product-card">
-                <!-- Thông tin sản phẩm (2/5) -->
-                <div class="product-info col-product">
-                    <img src="${imageUrl}" alt="${item.name}" onerror="this.onerror=null;this.src='https://placehold.co/80x80/E0E0E0/333333?text=DT';" class="product-image">
-                    <span>${item.name}</span>
-                </div>
-                
-                <!-- Đơn giá (1/5) -->
-                <span class="price-display col-price text-gray-600">${formatCurrency(item.price)}</span>
-                
-                <!-- Số lượng (1/5) -->
-                <div class="quantity-control col-quantity">
-                    <button onclick="changeQuantity('${item.id}', -1)">-</button>
-                    <input type="number" value="${item.quantity}" min="1" readonly>
-                    <button onclick="changeQuantity('${item.id}', 1)">+</button>
-                </div>
-                
-                <!-- Thành tiền (1/5) -->
-                <span class="total-display col-total">${formatCurrency(itemTotal)}</span>
+    function renderCart() {
+        cartListContainer.innerHTML = ''; // Xóa sạch nội dung cũ
+        let subtotal = 0;
 
-                <!-- Nút Xóa -->
-                <button onclick="removeItem('${item.id}')" class="remove-btn">
-                    <svg class="icon-small" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+        // Xử lý giỏ hàng trống
+        if (cart.length === 0) {
+            if (emptyCartMessage) emptyCartMessage.classList.remove('hidden');
+            if (checkoutLink) checkoutLink.classList.add('disabled-link');
+            if (subtotalDisplay) subtotalDisplay.textContent = '0₫';
+            if (totalDisplay) totalDisplay.textContent = '0₫';
+            updateHeaderCartCount(); // Cập nhật header thành 0
+            return;
+        }
+
+        // Ẩn thông báo trống và kích hoạt nút thanh toán nếu có hàng
+        if (emptyCartMessage) emptyCartMessage.classList.add('hidden');
+        if (checkoutLink) checkoutLink.classList.remove('disabled-link');
+
+        // Lặp qua từng sản phẩm để tạo HTML
+        cart.forEach((item, index) => {
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('cart-item'); // <<< SỬ DỤNG CLASS MỚI
+            const itemTotalPrice = item.price * item.quantity;
+            subtotal += itemTotalPrice;
+            const imageUrl = item.image || 'https://placehold.co/80x80/E0E0E0/333333?text=DT'; // Ảnh mặc định
+
+            // Tạo HTML cho từng sản phẩm
+            itemElement.innerHTML = `
+                <img src="${imageUrl}" alt="${item.name}" onerror="this.onerror=null;this.src='https://placehold.co/80x80/E0E0E0/333333?text=DT';">
+                <span class="product-name">${item.name}</span>
+                <span class="item-price">${item.price.toLocaleString('vi-VN')}₫</span>
+                <div class="quantity-control">
+                    <button class="decrease-btn" data-index="${index}">-</button>
+                    <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-index="${index}" readonly>
+                    <button class="increase-btn" data-index="${index}">+</button>
+                </div>
+                <span class="item-total-price">${itemTotalPrice.toLocaleString('vi-VN')}₫</span>
+                <button class="remove-btn" data-index="${index}">
+                    <i class="fa-solid fa-trash-can"></i>
                 </button>
-            </div>
-        `;
-    }).join('');
+            `;
+            cartListContainer.appendChild(itemElement);
+        });
 
-    // Cập nhật tóm tắt
-    const totalAmount = subtotal; 
-    subtotalDisplay.textContent = formatCurrency(subtotal);
-    totalDisplay.textContent = formatCurrency(totalAmount);
-}
+        // Cập nhật tóm tắt đơn hàng
+        if (subtotalDisplay) subtotalDisplay.textContent = `${subtotal.toLocaleString('vi-VN')}₫`;
+        if (totalDisplay) totalDisplay.textContent = `${subtotal.toLocaleString('vi-VN')}₫`; // Giả sử miễn phí vận chuyển
+        updateHeaderCartCount(); // Cập nhật số lượng trên header
+    }
 
-// --- 3. KHỞI TẠO CHUNG ---
-document.addEventListener('DOMContentLoaded', () => {
-    // Gán các hàm tương tác vào đối tượng window 
-    window.changeQuantity = changeQuantity;
-    window.removeItem = removeItem;
-    
+    // --- Xử lý sự kiện click trên danh sách giỏ hàng (SỬ DỤNG addEventListener) ---
+    if(cartListContainer) { // Chỉ thêm listener nếu cartListContainer tồn tại
+        cartListContainer.addEventListener('click', (event) => {
+            const target = event.target;
+            const button = target.closest('button'); // Tìm nút gần nhất được click
+
+            if (!button) return; // Nếu không click vào nút thì dừng
+
+            const index = button.dataset.index; // Lấy index từ thuộc tính data-index
+
+            if (button.classList.contains('remove-btn')) {
+                // Thêm xác nhận trước khi xóa
+                if (confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?')) {
+                    cart.splice(index, 1); // Xóa sản phẩm khỏi mảng cart
+                    saveCart(); // Lưu và render lại
+                    renderCart();
+                }
+            } else if (button.classList.contains('increase-btn')) {
+                cart[index].quantity++;
+                saveCart();
+                renderCart();
+            } else if (button.classList.contains('decrease-btn')) {
+                if (cart[index].quantity > 1) {
+                    cart[index].quantity--;
+                    saveCart();
+                    renderCart();
+                } else {
+                    // Nếu số lượng là 1 mà bấm giảm -> hỏi xác nhận xóa
+                    if (confirm('Bạn có muốn xóa sản phẩm này khỏi giỏ hàng?')) {
+                        cart.splice(index, 1);
+                        saveCart();
+                        renderCart();
+                    }
+                }
+            }
+        });
+    }
+
+    // --- Khởi chạy khi tải trang ---
     renderCart();
-}
-);
+
+    // --- Xử lý User Section (Copy từ script.js nếu cần đồng bộ) ---
+    const userSectionCart = document.getElementById('user-section');
+    if (userSectionCart && typeof displayUser === 'function') {
+         try {
+            displayUser(); // Gọi hàm displayUser từ script.js (nếu script.js được tải trước)
+         } catch (e) { console.error("Could not call displayUser from script.js:", e); }
+    } else if (userSectionCart) {
+         // Fallback cơ bản nếu không tìm thấy hàm displayUser
+         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+         if (currentUser) {
+              userSectionCart.innerHTML = `<span class="nav-button">Xin chào, ${currentUser.name}</span>`;
+         } else {
+              userSectionCart.innerHTML = `<a href="login.html" class="nav-button"><i class="fa-solid fa-user"></i><span>Đăng nhập</span></a>`;
+         }
+    }
+});
