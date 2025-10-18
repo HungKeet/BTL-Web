@@ -61,13 +61,16 @@
     margin-bottom: 1rem;
     font-weight: 600;
     display: grid;
-    grid-template-columns: 40% 20% 20% 20%;
+    /* Cập nhật header grid cho khớp layout mới */
+    grid-template-columns: 1fr 120px 120px 120px auto; /* Sản phẩm | Đơn giá | Số lượng | Thành tiền | Xóa */
     gap: 1rem;
     align-items: center;
 }
 .cart-header .col-price { text-align: center; }
 .cart-header .col-quantity { text-align: center; }
 .cart-header .col-total { text-align: right; }
+/* Thêm cột trống cho nút xóa header (hoặc bỏ trống) */
+.cart-header::after { content: ""; }
 
 
 /* Product Item (Rendered by JS) */
@@ -82,23 +85,23 @@
 .cart-item:last-child { border-bottom: none; }
 
 .cart-item img {
-    width: 5rem; /* ~80px */
-    height: 5rem; /* ~80px */
+    width: 80px;
+    height: 80px;
     object-fit: cover;
-    border-radius: 0.5rem; /* Bo góc */
-    grid-row: 1 / 3; /* Vẫn giữ vị trí trong grid */
-    margin-right: 1rem; /* Thêm khoảng cách phải (chủ yếu ảnh hưởng desktop) */
+    border-radius: 0.5rem;
+    grid-row: 1 / 3;
 }
 
 .cart-item .product-name {
     font-size: 1rem;
-    font-weight: 600; /* Đậm hơn (semibold) */
-    color: #1f2937; /* Màu xám đen */
+    font-weight: 500;
+    color: var(--text-color, #333);
     line-height: 1.4;
     grid-column: 2;
     grid-row: 1;
     align-self: start;
 }
+
 .cart-item .item-price {
     font-size: 0.9rem;
     color: #4b5563;
@@ -193,25 +196,11 @@
     .main-padding { padding-left: 2rem; padding-right: 2rem; }
 }
 
-/* Bên trong @media (min-width: 1024px) */
-
+@media (min-width: 1024px) {
     .cart-layout { flex-direction: row; }
-    .cart-main-content { width: 70%; } /* Có thể điều chỉnh tỷ lệ nếu cần */
+    .cart-main-content { width: 70%; }
     .cart-summary { width: 30%; }
-    .cart-header {
-        display: grid;
-        /* Cập nhật header grid cho khớp layout mới */
-        grid-template-columns: 1fr 120px 120px 120px auto; /* Sản phẩm | Đơn giá | Số lượng | Thành tiền | Xóa */
-        gap: 1rem;
-        align-items: center;
-    }
-     /* Căn chỉnh header columns */
-    .cart-header .col-price { text-align: center; }
-    .cart-header .col-quantity { text-align: center; }
-    .cart-header .col-total { text-align: right; }
-    /* Thêm cột trống cho nút xóa header (hoặc bỏ trống) */
-    .cart-header::after { content: ""; }
-
+    .cart-header { display: grid; } /* Header cũng dùng grid */
 
     .cart-item {
         display: grid;
@@ -237,6 +226,7 @@
         border-radius: 0.5rem;
         margin-right: 1rem; /* Khoảng cách giữa ảnh và tên */
         flex-shrink: 0;
+        grid-row: unset; /* Reset grid-row từ mobile */
     }
     .cart-item .product-name {
         font-size: 0.95rem;
@@ -244,22 +234,28 @@
         color: var(--text-color, #333);
         line-height: 1.4;
         flex-grow: 1; /* Tên tự giãn ra */
+        grid-column: unset; /* Reset grid-column */
+        grid-row: unset; /* Reset grid-row */
+        align-self: unset; /* Reset align-self */
     }
 
     /* Cột 2: Đơn giá */
     .cart-item .item-price {
         grid-column: 2 / 3;
+        grid-row: 1; /* Đảm bảo về đúng hàng 1 */
         text-align: center;
         align-self: center;
         display: block !important;
         font-weight: 500;
         color: var(--text-color);
         font-size: 0.95rem;
+        margin-top: 0; /* Reset margin */
     }
 
     /* Cột 3: Số lượng */
     .quantity-control {
         grid-column: 3 / 4;
+        grid-row: 1;
         justify-content: center;
         margin: 0;
         align-self: center;
@@ -268,6 +264,7 @@
     /* Cột 4: Thành tiền */
     .item-total-price {
         grid-column: 4 / 5;
+        grid-row: 1;
         text-align: right;
         align-self: center;
         font-weight: 600;
@@ -279,19 +276,9 @@
     .remove-btn {
         position: static;
         grid-column: 5 / 6;
+        grid-row: 1;
         justify-self: center;
         margin-left: 0;
         align-self: center;
-        background: none;
-        border: none;
-        color: #9ca3af;
-        cursor: pointer;
-        padding: 0.25rem;
-        font-size: 1.1rem;
-        transition: color 0.15s;
     }
-    .remove-btn:hover { color: var(--primary-color); }
-    .remove-btn i { pointer-events: none; }
-    /* Hide price below name on desktop */
-    .cart-item .product-info .item-price { display: none !important;}
 }
