@@ -272,12 +272,4 @@
         color: var(--text-color, #333);
         font-size: 0.95rem;
     }
-
-    .remove-btn {
-        grid-column: 6 / 7; /* Nút xóa ở cột 6 */
-        grid-row: 1;
-        position: static;
-        justify-self: center; /* Căn giữa nút trong cột */
-        margin-left: 0;
-    }
 }
