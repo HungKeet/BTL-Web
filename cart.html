@@ -1,72 +1,83 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Giỏ Hàng Của Bạn</title>
     <link rel="icon" type="image/png" href="images/favicon.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="cart_styles.css" />
-</head>
-<body>
+  </head>
+  <body>
     <header class="header">
-        <div class="container">
-            <a href="index.html" class="logo">K Store</a>
-            <a href="index.html" class="nav-button continue-shopping-btn">
-                <i class="fa-solid fa-arrow-left"></i>
-                <span>Tiếp tục mua hàng</span>
-            </a>
-            <div class="user-actions">
-                <div id="user-section"></div>
-            </div>
+      <div class="container">
+        <a href="index.html" class="logo">K Store</a>
+        <a href="index.html" class="nav-button continue-shopping-btn">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Tiếp tục mua hàng</span>
+        </a>
+        <div class="user-actions">
+          <div id="user-section"></div>
         </div>
+      </div>
     </header>
 
     <main class="container main-padding min-height-80vh">
-        <h1 class="page-title">Giỏ Hàng Của Bạn</h1>
+      <h1 class="page-title">Giỏ Hàng Của Bạn</h1>
 
-        <div class="cart-layout">
-            <div class="cart-main-content card-style">
-                <div class="cart-header">
-                    <span class="col-product">Sản phẩm</span>
-                    <span class="col-price">Đơn giá</span>
-                    <span class="col-quantity">Số lượng</span>
-                    <span class="col-total">Thành tiền</span>
-                </div>
-                <div id="cart-list">
-                    </div>
-                <div id="empty-cart-message" class="empty-message hidden">
-                    <i class="fa-solid fa-cart-shopping icon-large text-gray-400 mb-4"></i>
-                    <p>Giỏ hàng của bạn đang trống.</p>
-                    <a href="index.html" class="link-primary">Quay lại trang chủ</a>
-                </div>
-            </div>
-
-            <div class="cart-summary">
-                <div class="card-style summary-box">
-                    <h2 class="summary-title">Tóm Tắt</h2>
-                    <div class="summary-details">
-                        <div class="flex-space-between">
-                            <span>Tạm tính:</span>
-                            <span id="subtotal-display" class="font-medium">0₫</span>
-                        </div>
-                        <div class="flex-space-between">
-                            <span>Phí vận chuyển:</span>
-                            <span class="font-medium text-green-600">Miễn phí</span>
-                        </div>
-                        <div class="flex-space-between total-row">
-                            <span>TỔNG CỘNG:</span>
-                            <span id="total-display">0₫</span>
-                        </div>
-                    </div>
-                    <a href="checkout.html" id="checkout-link" class="btn-primary btn-full-width mt-6 text-center disabled-link">
-                        Tiến hành Thanh toán
-                    </a>
-                </div>
-            </div>
+      <div class="cart-layout">
+        <div class="cart-main-content card-style">
+          <div class="cart-header">
+            <span class="col-product">Sản phẩm</span>
+            <span class="col-price">Đơn giá</span>
+            <span class="col-quantity">Số lượng</span>
+            <span class="col-total">Thành tiền</span>
+          </div>
+          <div id="cart-list"></div>
+          <div id="empty-cart-message" class="empty-message hidden">
+            <i
+              class="fa-solid fa-cart-shopping icon-large text-gray-400 mb-4"
+            ></i>
+            <p>Giỏ hàng của bạn đang trống.</p>
+            <a href="index.html" class="link-primary">Quay lại trang chủ</a>
+          </div>
         </div>
+
+        <div class="cart-summary">
+          <div class="card-style summary-box">
+            <h2 class="summary-title">Tóm Tắt</h2>
+            <div class="summary-details">
+              <div class="flex-space-between">
+                <span>Tạm tính:</span>
+                <span id="subtotal-display" class="font-medium">0₫</span>
+              </div>
+              <div class="flex-space-between">
+                <span>Phí vận chuyển:</span>
+                <span class="font-medium text-green-600">Miễn phí</span>
+              </div>
+              <div class="flex-space-between total-row">
+                <span>TỔNG CỘNG:</span>
+                <span id="total-display">0₫</span>
+              </div>
+            </div>
+            <a
+              href="checkout.html"
+              id="checkout-link"
+              class="btn-primary btn-full-width mt-6 text-center disabled-link"
+            >
+              Tiến hành Thanh toán
+            </a>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer class="site-footer">
@@ -115,5 +126,5 @@
 
     <script src="cart_scripts.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
