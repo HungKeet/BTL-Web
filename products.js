@@ -1,6 +1,6 @@
 const PRODUCTS = {
   ip15pm: {
-    name: "iPhone 15 Pro Max 256GB | Chính hãng VN/A",
+    name: "Iphone 15 Pro Max 256GB | Chính hãng VN/A",
     brand: "Apple",
     category: "Điện thoại",
     defaultImage:
@@ -37,7 +37,7 @@ const PRODUCTS = {
     ],
   },
   ip15pro: {
-    name: "iPhone 15 Pro 128GB | Chính hãng VN/A",
+    name: "IpIphone 15 Pro 128GB | Chính hãng VN/A",
     brand: "Apple",
     category: "Điện thoại",
     defaultImage:
@@ -55,58 +55,7 @@ const PRODUCTS = {
         storage: "128GB",
         price: 25190000,
         image:
-          "https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/iphone15-pro-den_1.jpg",
-      },
-    ],
-  },
-  ip15: {
-    name: "iPhone 17 Pro Max 256GB | Chính hãng VN/A",
-    brand: "Apple",
-    category: "Điện thoại",
-    defaultImage:
-      "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-17-pro-2_1.jpg",
-    options: [
-      {
-        color: "Cam vũ trụ",
-        storage: "256GB",
-        price: 34990000,
-        image:
-          "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-17-pro-cam.jpg",
-      },
-      {
-        color: "Bạc",
-        storage: "256GB",
-        price: 34990000,
-        image:
-          "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-17-pro-3.jpg",
-      },
-    ],
-  },
-  ip14pro: {
-    name: "iPhone 14 Pro Max 128GB | Cũ Đẹp",
-    brand: "Apple",
-    category: "Điện thoại",
-    defaultImage:
-      "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-14-pro_2__5.png",
-    options: [
-      {
-        color: "Tím",
-        storage: "128GB",
-        price: 23590000,
-        image:
-          "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-14-pro_2__5.png",
-      },
-      {
-        color: "Vàng",
-        storage: "128GB",
-        price: 23990000,
-        image:
-          "https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-14-pro-vang_1_1.png",
-      },
-    ],
-  },
-  ip13: {
-    name: "iPhone 13 128GB | Chính Hãng VN/A",
+          "https://cdn2.cellphones.com.vn/35Iphone 13 128GB | Chính Hãng VN/A",
     brand: "Apple",
     category: "Điện thoại",
     defaultImage:
