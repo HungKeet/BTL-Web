@@ -92,14 +92,13 @@
 
 .cart-item .product-name {
     font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-color, #333);
+    font-weight: 600; /* Đậm hơn (semibold) */
+    color: #1f2937; /* Màu xám đen */
     line-height: 1.4;
     grid-column: 2;
     grid-row: 1;
     align-self: start;
 }
-
 .cart-item .item-price {
     font-size: 0.9rem;
     color: #4b5563;
