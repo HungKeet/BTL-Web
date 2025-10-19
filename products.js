@@ -101,7 +101,7 @@ const PRODUCTS = {
         storage: "128GB",
         price: 23990000,
         image:
-          "https://cdn2.cellphones.com.vn/358x/media/catalog/product/v/_/v_ng_18_1.png,
+          "https://cdn2.cellphones.com.vn/358x/media/catalog/product/v/_/v_ng_18_1.png",
       },
     ],
   },
