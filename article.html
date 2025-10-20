@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="article-page-title">Chi tiết Tin tức</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="news.css" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <a href="index.html" class="logo">K Store</a>
+        <div class="header-nav">
+          <a href="index.html" class="nav-button">
+            <i class="fa-solid fa-bars"></i>
+            <span>Sản phẩm</span>
+          </a>
+          <a href="news.html" class="nav-button">
+            <i class="fa-solid fa-newspaper"></i>
+            <span>Tin công nghệ</span>
+          </a>
+        </div>
+        <div class="search-bar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm..." />
+          <button id="search-button">Tìm</button>
+          <div id="search-suggestions" class="search-suggestions"></div>
+        </div>
+        <div class="user-actions">
+          <a href="cart.html" class="nav-button">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Giỏ hàng (<span id="cart-count">0</span>)</span>
+          </a>
+          <div id="user-section"></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <div class="article-detail-container" id="article-detail">
+        <div class="loading-text">Đang tải nội dung bài viết...</div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      </footer>
+
+    <script src="products.js"></script>
+    <script src="script.js"></script>
+    <script src="news.js"></script> <script src="article.js"></script> </body>
+</html>

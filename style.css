@@ -47,6 +47,10 @@ body {
     gap: 10px;
 }
 
+/* ==================================== */
+/* Cập nhật phần .search-bar và .search-suggestions */
+/* ==================================== */
+
 .search-bar {
     flex-grow: 1;
     display: flex;
@@ -54,8 +58,11 @@ body {
     background-color: #fff;
     border-radius: 8px;
     padding: 0 15px;
+    position: relative; 
+    max-width: 450px; 
+    min-width: 250px;
+    height: 40px; 
 }
-
 .search-bar i {
     color: #777;
     font-size: 14px;
@@ -63,10 +70,64 @@ body {
 
 .search-bar input {
     width: 100%;
-    padding: 12px 10px;
+    padding: 10px 10px;
     border: none;
     outline: none;
     font-size: 14px;
+}
+
+.search-bar button {
+    background-color: var(--primary-color); 
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    font-weight: 500;
+    margin-right: -15px; 
+    height: 100%;
+}
+
+
+.search-suggestions {
+    /* Đặt vị trí tuyệt đối so với .search-bar (position: relative) */
+    position: absolute; 
+    top: 100%; 
+    left: 0;
+    right: 0;
+    margin-top: 1px; 
+    
+    z-index: 1001;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none; 
+    max-height: 250px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 8px 8px; 
+    display: none; 
+}
+
+.suggestion-item {
+    display: block; 
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-color); /* #333 */
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap; /* Ngăn không cho chữ xuống dòng */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Hiển thị dấu ba chấm nếu tên quá dài */
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+    color: var(--primary-color);
 }
 
 .user-actions {
