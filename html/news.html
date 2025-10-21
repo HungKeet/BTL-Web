@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chi tiết sản phẩm</title>
-
+    <title>Tin công nghệ - K Store</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -13,31 +12,53 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" type="image/png" href="images/favicon.png" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="product-detail.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/news.css" />
+    <link rel="icon" type="image/png" href="../images/favicon.png" />
   </head>
   <body>
     <header class="header">
       <div class="container">
         <a href="index.html" class="logo">K Store</a>
-        <nav class="navigation">
-          <a href="cart.html" class="nav-item">
-            <i class="fa-solid fa-cart-shopping"></i> Giỏ hàng (<span
-              id="cart-count"
-              >0</span
-            >)
+        <div class="header-nav">
+          <div class="dropdown">
+            <a href="#" class="nav-button">
+              <i class="fa-solid fa-bars"></i>
+              <span>Sản phẩm</span>
+            </a>
+            <div class="dropdown-content">
+              <a href="category.html?type=Điện thoại">
+                <i class="fa-solid fa-mobile-screen-button"></i> Điện thoại
+              </a>
+              <a href="#"> <i class="fa-solid fa-laptop"></i> Laptop </a>
+              <a href="#"> <i class="fa-solid fa-headphones"></i> Tai nghe </a>
+              <a href="#"> <i class="fa-solid fa-keyboard"></i> Phụ kiện </a>
+            </div>
+          </div>
+          <a href="news.html" class="nav-button active">
+            <i class="fa-solid fa-newspaper"></i>
+            <span>Tin công nghệ</span>
           </a>
-          <a href="index.html" class="nav-item">
-            <i class="fa-solid fa-house"></i> Về trang chủ
+        </div>
+          <div class="search-bar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm...">
+          <div id="search-suggestions" class="search-suggestions"></div> 
+        </div>
+        <div class="user-actions">
+          <a href="cart.html" class="nav-button">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Giỏ hàng (<span id="cart-count">0</span>)</span>
           </a>
-        </nav>
+          <div id="user-section"></div>
+        </div>
       </div>
     </header>
 
     <main class="container">
-      <div class="product-detail-container" id="product-detail">
-        <div class="loading">Đang tải thông tin sản phẩm...</div>
+      <h1 class="page-title">TIN CÔNG NGHỆ MỚI NHẤT</h1>
+      <div class="news-grid" id="news-list">
+        <div class="loading-text">Đang tải tin tức...</div>
       </div>
     </main>
 
@@ -80,12 +101,13 @@
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2025 <kbd></kbd> Store. All Rights Reserved.</p>
+          <p>&copy; 2025 K Store. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
 
-    <script src="products.js"></script>
-    <script src="product-detail.js"></script>
+    <script src="../js/products.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="../js/news.js"></script>
   </body>
 </html>
